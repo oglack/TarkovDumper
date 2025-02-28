@@ -2,6 +2,8 @@
 
 A simple and efficient dumper for **Escape from Tarkov** and **Escape from Tarkov Arena**. This tool is designed to help you extract and update game data using **Lone Tarkov**, **Lone Arena**, and **Evo** processors. It ensures all clients are up to date with minimal effort.
 
+![Preview](preview/preview.png)
+
 ## Features
 - Supports both **Escape from Tarkov** and **Escape from Tarkov Arena**.
 - Utilizes **Unispect** for initial game dumping.
