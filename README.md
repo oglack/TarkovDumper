@@ -36,4 +36,4 @@ A simple and efficient dumper for **Escape from Tarkov** and **Escape from Tarko
 ## Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/tarkov-dumper.git
+   git clone https://github.com/Butter2222/TarkovDumper.git
