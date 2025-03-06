@@ -6,13 +6,14 @@ using System.Diagnostics;
 
 namespace TarkovDumper.Implementations
 {
-    public sealed class EFTProcessor : Processor
+    public sealed class Tarkov : Processor
     {
-        private const string ASSEMBLY_INPUT_PATH = @"C:\Users\Butters\Desktop\dumper\input\DLL\tarkov\Assembly-CSharp.dll";
-        private const string DUMP_INPUT_PATH = @"C:\Users\Butters\Desktop\dumper\input\Ltarkov\dump.txt";
-        private const string SDK_OUTPUT_PATH = @"C:\Users\Butters\Desktop\dumper\output\Ltarkov\SDK.cs";
+        private readonly ProcessorConfig _config;
 
-        public EFTProcessor() : base(ASSEMBLY_INPUT_PATH, DUMP_INPUT_PATH) { }
+        public Tarkov(ProcessorConfig config) : base(config.AssemblyInputPath, config.DumpInputPath)
+        {
+            _config = config;
+        }
 
         public override void Run(StatusContext ctx)
         {
@@ -36,7 +37,7 @@ namespace TarkovDumper.Implementations
             AnsiConsole.WriteLine(StructureGenerator.GenerateReports(sgList));
 
             string plainSDK = StructureGenerator.GenerateNamespace("SDK", sgList, false);
-            File.WriteAllText(SDK_OUTPUT_PATH, plainSDK);
+            File.WriteAllText(_config.SDKOutputPath, plainSDK);
         }
 
         private void ProcessClassNames(StatusContext ctx, StructureGenerator structGenerator)

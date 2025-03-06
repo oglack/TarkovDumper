@@ -5,14 +5,14 @@ using Spectre.Console;
 
 namespace TarkovDumper.Implementations
 {
-    public sealed class EvoProcessor : Processor
+    public sealed class EVO : Processor
     {
-        //Change ASSEMBLY_INPUT_PATH for either arena or tarkov
-        private const string ASSEMBLY_INPUT_PATH = @"C:\Users\Butters\Desktop\dumper\input\DLL\arena\Assembly-CSharp.dll";
-        private const string DUMP_INPUT_PATH = @"C:\Users\Butters\Desktop\dumper\input\arena\dump.txt";
-        private const string SDK_OUTPUT_PATH = @"C:\Users\Butters\Desktop\dumper\output\Evo\EFTOffsets.cs";
+        private readonly ProcessorConfig _config;
 
-        public EvoProcessor() : base(ASSEMBLY_INPUT_PATH, DUMP_INPUT_PATH) { }
+        public EVO(ProcessorConfig config) : base(config.AssemblyInputPath, config.DumpInputPath)
+        {
+            _config = config;
+        }
 
         public override void Run(StatusContext ctx)
         {
@@ -36,12 +36,12 @@ namespace TarkovDumper.Implementations
             AnsiConsole.WriteLine(StructureGenerator.GenerateReports(sgList));
 
             string plainSDK = StructureGenerator.GenerateNamespace("SDK", sgList, false);
-            File.WriteAllText(SDK_OUTPUT_PATH, plainSDK);
+            File.WriteAllText(_config.SDKOutputPath, plainSDK);
         }
         public void ProcessGameData(StatusContext ctx, StructureGenerator structGenerator)
         {
             structGenerator.AddString("GameHostname", "prod.escapefromtarkov.com");
-            structGenerator.AddString("LauncherHostname", "launcher.escapefromtarkov.com");
+            structGenerator.AddString("LauncherHostname", "launcher.escapefromtarkov.com"); // Dont think this shit matters
             structGenerator.AddString("UNITY_VERSION", "2019.4.39.7917901");
         }
 
