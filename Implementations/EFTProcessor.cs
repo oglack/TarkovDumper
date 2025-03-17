@@ -49,6 +49,35 @@ namespace TarkovDumper.Implementations
             }
 
             {
+                string entity = "SetLocalProfile";
+                string variable = "ClassName";
+                SetVariableStatus(variable);
+
+                StructureGenerator nestedStruct = new("StreamerMode");
+                nestedStruct.AddString("MethodName", "IsLocalStreamer");
+
+                nestedStruct.AddClassName(_dnlibHelper.FindClassWithEntityName(entity, DnlibHelper.SearchType.Method), variable, entity);
+
+                structGenerator.AddStruct(nestedStruct);
+            }
+
+            { // Thank you SoTMaulder for the paste !
+                string name = "EFT.UI.DragAndDrop.GridItemView";
+                string entity = "itemComponent.Nickname.SubstringIfNecessary";
+                string variable = "MethodName";
+                SetVariableStatus(variable);
+
+                StructureGenerator nestedStruct = new("GridItemView");
+
+                var fClass = _dnlibHelper.FindClassByTypeName(name);
+                var fMethod = _dnlibHelper.FindMethodThatContains(_decompiler_Basic, fClass, entity);
+
+                nestedStruct.AddMethodName(fMethod, variable, entity);
+
+                structGenerator.AddStruct(nestedStruct);
+            }
+
+            {
                 string entity = "SetUpSpawnInfo";
                 string variable = "ClassName";
                 SetVariableStatus(variable);
@@ -3753,7 +3782,7 @@ namespace TarkovDumper.Implementations
                 string entity;
 
                 {
-                    entity = "Cycle";
+                    entity = "<Cycle>k__BackingField";
 
                     var offset = _dumpParser.FindOffsetByName(name, entity);
                     nestedStruct.AddOffset(entity, offset);
