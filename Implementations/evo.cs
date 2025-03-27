@@ -4251,7 +4251,7 @@ namespace TarkovDumper.Implementations
                 string entity;
 
                 {
-                    entity = "Cycle";
+                    entity = "<Cycle>k__BackingField";
 
                     var offset = _dumpParser.FindOffsetByName(name, entity);
                     nestedStruct.AddOffset(entity, offset);

@@ -60,8 +60,23 @@ namespace TarkovDumper.Implementations
 
                 structGenerator.AddStruct(nestedStruct);
             }
+            {
+                string name = "EFT.InventoryLogic.DogtagComponent";
+                string entity = "Nickname";
+                string variable = "MethodName";
+                SetVariableStatus(variable);
 
-            { // Thank you SoTMaulder for the paste !
+                StructureGenerator nestedStruct = new("DogtagComponent");
+
+                var fClass = _dnlibHelper.FindClassByTypeName(name);
+                var fMethod = _dnlibHelper.FindMethodThatReturns(_decompiler_Basic, fClass, entity);
+
+                nestedStruct.AddMethodName(fMethod, variable, entity);
+
+                structGenerator.AddStruct(nestedStruct);
+            }
+
+            {
                 string name = "EFT.UI.DragAndDrop.GridItemView";
                 string entity = "itemComponent.Nickname.SubstringIfNecessary";
                 string variable = "MethodName";
@@ -923,6 +938,13 @@ namespace TarkovDumper.Implementations
                     nestedStruct.AddOffset(entity, offset);
                 }
 
+                {
+                    entity = "SecretExfiltrationPointArray";
+
+                    var offset = _dumpParser.FindOffsetByTypeName(offsetControllerClassName, "EFT.Interactive.SecretExfiltrations.SecretExfiltrationPoint[]");
+                    nestedStruct.AddOffset(entity, offset);
+                }
+
                 structGenerator.AddStruct(nestedStruct);
             }
 
@@ -991,7 +1013,77 @@ namespace TarkovDumper.Implementations
                 const string className = "EFT.Interactive.ExitTriggerSettings";
 
                 {
+                    entity = "Id";
+
+                    var offset = _dumpParser.FindOffsetByName(className, entity);
+                    nestedStruct.AddOffset(entity, offset);
+                }
+
+                {
                     entity = "Name";
+
+                    var offset = _dumpParser.FindOffsetByName(className, entity);
+                    nestedStruct.AddOffset(entity, offset);
+                }
+
+                {
+                    entity = "EntryPoints";
+
+                    var offset = _dumpParser.FindOffsetByName(className, entity);
+                    nestedStruct.AddOffset(entity, offset);
+                }
+
+                {
+                    entity = "ExfiltrationType";
+
+                    var offset = _dumpParser.FindOffsetByName(className, entity);
+                    nestedStruct.AddOffset(entity, offset);
+                }
+
+                {
+                    entity = "ExfiltrationTime";
+
+                    var offset = _dumpParser.FindOffsetByName(className, entity);
+                    nestedStruct.AddOffset(entity, offset);
+                }
+
+                {
+                    entity = "PlayersCount";
+
+                    var offset = _dumpParser.FindOffsetByName(className, entity);
+                    nestedStruct.AddOffset(entity, offset);
+                }
+
+                {
+                    entity = "Chance";
+
+                    var offset = _dumpParser.FindOffsetByName(className, entity);
+                    nestedStruct.AddOffset(entity, offset);
+                }
+
+                {
+                    entity = "MinTime";
+
+                    var offset = _dumpParser.FindOffsetByName(className, entity);
+                    nestedStruct.AddOffset(entity, offset);
+                }
+
+                {
+                    entity = "MaxTime";
+
+                    var offset = _dumpParser.FindOffsetByName(className, entity);
+                    nestedStruct.AddOffset(entity, offset);
+                }
+
+                {
+                    entity = "StartTime";
+
+                    var offset = _dumpParser.FindOffsetByName(className, entity);
+                    nestedStruct.AddOffset(entity, offset);
+                }
+
+                {
+                    entity = "EventAvailable";
 
                     var offset = _dumpParser.FindOffsetByName(className, entity);
                     nestedStruct.AddOffset(entity, offset);
