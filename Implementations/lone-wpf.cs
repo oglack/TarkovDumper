@@ -3,8 +3,6 @@ using Spectre.Console;
 using System.Diagnostics;
 using static TarkovDumper.Decompiler;
 
-// Works for EVO Arena + Tarkov. Maybe
-
 namespace TarkovDumper.Implementations
 {
     public sealed class LoneWPF : Processor
