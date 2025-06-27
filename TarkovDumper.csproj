@@ -17,6 +17,11 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Remove="SDK.cs" />
+	  <Compile Remove="SDK_old.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="dnlib" Version="4.4.0" />
 		<PackageReference Include="ICSharpCode.Decompiler" Version="8.2.0.7535" />
 		<PackageReference Include="Kokuban" Version="0.2.0" />

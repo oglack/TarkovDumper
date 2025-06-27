@@ -30,6 +30,7 @@ A simple and efficient dumper for **Escape from Tarkov** and **Escape from Tarko
 - **Lone Tarkov**: For Lones EFT client
 - **Lone Arena**: For Lones Arena client.
 - **Evo**: A universal processor for both games.
+- **Lone WPF EFT**: For Lones&x0m WPF based EFT client.
 
 ## Requirements
 - **Unispect** for initial game dumping.
