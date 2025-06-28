@@ -25,7 +25,7 @@ namespace TarkovDumper
             var choice = AnsiConsole.Prompt(
                 new SelectionPrompt<string>()
                     .Title("Which processor would you like to run?")
-                    .AddChoices(new[] { "Lone Tarkov", "Lone Arena", "Evo", "Lone WPF EFT" }));
+                    .AddChoices(new[] { "Lone Tarkov", "Lone Arena", "Evo", "Lone WPF EFT", "Lone WPF Arena" }));
 
             // Load or create configuration
             var config = LoadOrCreateConfiguration();
@@ -60,6 +60,7 @@ namespace TarkovDumper
                         "Lone Arena" => new Arena(processorConfig),
                         "Evo" => new EVO(processorConfig),
                         "Lone WPF EFT" => new LoneWPF(processorConfig),
+                        "Lone WPF Arena" => new LoneWPFArena(processorConfig),
                         _ => throw new InvalidOperationException("Invalid processor selection.")
                     };
 
@@ -98,7 +99,8 @@ namespace TarkovDumper
                     ["LoneTarkov"] = new ProcessorConfig(),
                     ["LoneArena"] = new ProcessorConfig(),
                     ["Evo"] = new ProcessorConfig(),
-                    ["LoneWPFEFT"] = new ProcessorConfig()
+                    ["LoneWPFEFT"] = new ProcessorConfig(),
+                    ["LoneWPFArena"] = new ProcessorConfig()
                 };
 
                 File.WriteAllText(SettingsFilePath, JsonConvert.SerializeObject(defaultConfig, Formatting.Indented));
