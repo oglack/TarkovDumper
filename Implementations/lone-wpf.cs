@@ -683,12 +683,6 @@ namespace TarkovDumper.Implementations
                     nestedStruct.AddOffset(entity, offset);
                 }
 
-                {
-                    entity = "OfflineInteractables";
-
-                    nestedStruct.AddOffset(entity, new(true, new(entity, "EFT.Interactive.WorldInteractiveObject[]", 0x50)));
-                }
-
                 structGenerator.AddStruct(nestedStruct);
             }
 
@@ -1759,13 +1753,6 @@ namespace TarkovDumper.Implementations
                     entity = "<IsYourPlayer>k__BackingField";
 
                     var offset = _dumpParser.FindOffsetByName(className, entity);
-                    nestedStruct.AddOffset(entity, offset);
-                }
-
-                {
-                    entity = "World";
-
-                    var offset = _dumpParser.FindOffsetByName(className, "<GameWorld>k__BackingField");
                     nestedStruct.AddOffset(entity, offset);
                 }
 
@@ -4062,6 +4049,67 @@ namespace TarkovDumper.Implementations
 
                 {
                     entity = "QuestItem";
+
+                    var offset = _dumpParser.FindOffsetByName(className, entity);
+                    nestedStruct.AddOffset(entity, offset);
+                }
+
+                structGenerator.AddStruct(nestedStruct);
+            }
+
+            {
+                string name = "MedicalTemplate";
+                SetVariableStatus(name);
+
+                StructureGenerator nestedStruct = new(name);
+                var fClass = _dnlibHelper.FindClassWithEntityName("HpResourceRate", DnlibHelper.SearchType.Field);
+                string className = fClass.Humanize();
+                string entity;
+
+                {
+                    entity = "BodyPartTimeMults";
+
+                    var offset = _dumpParser.FindOffsetByName(className, entity);
+                    nestedStruct.AddOffset(entity, offset);
+                }
+
+                {
+                    entity = "HealthEffects";
+
+                    var offset = _dumpParser.FindOffsetByName(className, entity);
+                    nestedStruct.AddOffset(entity, offset);
+                }
+
+                {
+                    entity = "DamageEffects";
+
+                    var offset = _dumpParser.FindOffsetByName(className, entity);
+                    nestedStruct.AddOffset(entity, offset);
+                }
+
+                {
+                    entity = "StimulatorBuffs";
+
+                    var offset = _dumpParser.FindOffsetByName(className, entity);
+                    nestedStruct.AddOffset(entity, offset);
+                }
+
+                {
+                    entity = "UseTime";
+
+                    var offset = _dumpParser.FindOffsetByName(className, entity);
+                    nestedStruct.AddOffset(entity, offset);
+                }
+
+                {
+                    entity = "MaxHpResource";
+
+                    var offset = _dumpParser.FindOffsetByName(className, entity);
+                    nestedStruct.AddOffset(entity, offset);
+                }
+
+                {
+                    entity = "HpResourceRate";
 
                     var offset = _dumpParser.FindOffsetByName(className, entity);
                     nestedStruct.AddOffset(entity, offset);
